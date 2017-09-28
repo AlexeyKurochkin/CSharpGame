@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 
 namespace CSharpGame
 {
@@ -65,6 +66,31 @@ namespace CSharpGame
             }
             return mapObstacles;
         }
+
+        public static void DrawObstacles(Graphics g, List<Obstacle> map)
+        {
+            foreach (var element in map)
+            {
+                if (element.type != ObstacleType.empty)
+                {
+                    DrawObstacle(g, element);
+                }
+
+                //foreach (var item in tanks)
+                //{
+                //    if (Collisions.ObjectCollision(tank, item))
+                //    {
+                //        tank.Reverse();
+                //        item.Reverse();
+                //    }
+                //}
+            }
+        }
+        public static void DrawObstacle(Graphics g, Obstacle obstacle)
+        {
+            g.DrawImage(obstacle.image, obstacle.Bounds());
+        }
+
     }
 
 }

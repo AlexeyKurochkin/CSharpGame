@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace CSharpGame
 {
-    class Bullet
+   public class Bullet
     {
         public int X { get; set; }
         public int Y { get; set; }
@@ -15,7 +15,7 @@ namespace CSharpGame
         public int speedY = 0;
         public int width = 4;
         public int height = 4;
-        public Direction direction = Direction.down;
+        public Direction direction = Direction.Down;
         public Bitmap image;
         public void Move()
         {
@@ -24,16 +24,16 @@ namespace CSharpGame
 
             switch (direction)
             {
-                case Direction.up:
+                case Direction.Up:
                     speedY = -GameSettings.speed*2;
                     break;
-                case Direction.right:
+                case Direction.Right:
                     speedX = GameSettings.speed*2;
                     break;
-                case Direction.down:
+                case Direction.Down:
                     speedY = GameSettings.speed*2;
                     break;
-                case Direction.left:
+                case Direction.Left:
                     speedX = -GameSettings.speed*2;
                     break;
                 default:
@@ -45,27 +45,27 @@ namespace CSharpGame
         }
         public Bullet(BaseComponent shooter) 
         {
-            switch (shooter.direction)
+            switch (shooter.ComponentDirection)
             {
-                case Direction.up:
-                    X = shooter.X + (shooter.width - width) / 2;
+                case Direction.Up:
+                    X = shooter.X + (shooter.Width - width) / 2;
                     Y = shooter.Y;
-                    direction = Direction.up;
+                    direction = Direction.Up;
                     break;
-                case Direction.right:
-                    X = shooter.X + shooter.width;
-                    Y = shooter.Y + (shooter.height - height) / 2;
-                    direction = Direction.right;
+                case Direction.Right:
+                    X = shooter.X + shooter.Width;
+                    Y = shooter.Y + (shooter.Height - height) / 2;
+                    direction = Direction.Right;
                     break;
-                case Direction.down:
-                    X = shooter.X + (shooter.width - width)/ 2;
-                    Y = shooter.Y + shooter.height;
-                    direction = Direction.down;
+                case Direction.Down:
+                    X = shooter.X + (shooter.Width - width)/ 2;
+                    Y = shooter.Y + shooter.Height;
+                    direction = Direction.Down;
                     break;
-                case Direction.left:
+                case Direction.Left:
                     X = shooter.X;
-                    Y = shooter.Y + (shooter.height -height) / 2;
-                    direction = Direction.left;
+                    Y = shooter.Y + (shooter.Height -height) / 2;
+                    direction = Direction.Left;
                     break;
                 default:
                     break;
@@ -75,16 +75,16 @@ namespace CSharpGame
         {
             switch (direction)
             {
-                case Direction.up:
+                case Direction.Up:
                     image = new Bitmap(CSharpGame.Properties.Resources.bullet_up);
                     break;
-                case Direction.right:
+                case Direction.Right:
                     image = new Bitmap(CSharpGame.Properties.Resources.bullet_right);
                     break;
-                case Direction.down:
+                case Direction.Down:
                     image = new Bitmap(CSharpGame.Properties.Resources.bullet_down);
                     break;
-                case Direction.left:
+                case Direction.Left:
                     image = new Bitmap(CSharpGame.Properties.Resources.bullet_left);
                     break;
                 default:

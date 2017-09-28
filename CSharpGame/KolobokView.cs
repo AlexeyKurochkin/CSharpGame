@@ -15,22 +15,22 @@ namespace CSharpGame
             if (kolobok != null)
             {
 
-                if (kolobok.bullet != null)
+                if (kolobok.Bullet != null)
                 {
-                    kolobok.bullet.Move();
-                    kolobok.bullet.SelectImage();
-                    g.DrawImage(kolobok.bullet.image, kolobok.bullet.Bounds());
-                    if (!Collisions.BorderCollision(kolobok.bullet))
+                    kolobok.Bullet.Move();
+                    kolobok.Bullet.SelectImage();
+                    g.DrawImage(kolobok.Bullet.image, kolobok.Bullet.Bounds());
+                    if (!Collisions.BorderCollision(kolobok.Bullet))
                     {
-                        kolobok.bullet = null;
+                        kolobok.Bullet = null;
                     }
                     else
                     {
                         foreach (var tank in tanks)
                         {
-                            if (Collisions.ObjectCollision(kolobok.bullet, tank))
+                            if (Collisions.ObjectCollision(kolobok.Bullet, tank))
                             {
-                                kolobok.bullet = null;
+                                kolobok.Bullet = null;
                                 tank.SelectPosition(tanks.IndexOf(tank));
                                 break;
                             }

@@ -7,37 +7,37 @@ using System.Drawing;
 
 namespace CSharpGame
 {
-    enum Direction
+    public enum Direction
     {
-        up,
-        right,
-        down,
-        left
+        Up,
+        Right,
+        Down,
+        Left
     }
     class Kolobok : BaseComponent
     {
         public Kolobok(int x, int y)
         {
             this.X = x/3;
-            this.Y = y - height;
+            this.Y = y - Height;
 
-            direction = Direction.up;
+            ComponentDirection = Direction.Up;
         }
 
         public void SelectImage()
         {
-            switch (direction)
+            switch (ComponentDirection)
             {
-                case Direction.up:
+                case Direction.Up:
                     image = new Bitmap(CSharpGame.Properties.Resources.tank_player1_up_c0_t1);
                     break;
-                case Direction.right:
+                case Direction.Right:
                     image = new Bitmap(CSharpGame.Properties.Resources.tank_player1_right_c0_t1);
                     break;
-                case Direction.down:
+                case Direction.Down:
                     image = new Bitmap(CSharpGame.Properties.Resources.tank_player1_down_c0_t1);
                     break;
-                case Direction.left:
+                case Direction.Left:
                     image = new Bitmap(CSharpGame.Properties.Resources.tank_player1_left_c0_t1);
                     break;
                 default:

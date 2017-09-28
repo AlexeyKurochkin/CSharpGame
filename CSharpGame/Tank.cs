@@ -15,13 +15,13 @@ namespace CSharpGame
         {
             this.X = x / 2;
             this.Y = 0;
-            direction = Direction.down;
+            ComponentDirection = Direction.Down;
         }
 
         public Tank(int i)
         {
             SelectPosition(i);
-            direction = Direction.down;
+            ComponentDirection = Direction.Down;
         }
 
         
@@ -29,7 +29,7 @@ namespace CSharpGame
         {
             Random r = new Random();
             int value = r.Next(4);
-            direction = (Direction)value;
+            ComponentDirection = (Direction)value;
         }
 
         public void SelectPosition(int i)
@@ -41,11 +41,11 @@ namespace CSharpGame
                     Y = 0;
                     break;
                 case 1:
-                    X = GameSettings.areaWidth / 2 - width / 2;
+                    X = GameSettings.areaWidth / 2 - Width / 2;
                     Y = 0;
                     break;
                 case 2:
-                    X = GameSettings.areaWidth - width;
+                    X = GameSettings.areaWidth - Width;
                     Y = 0;
                     break;
                 default:
@@ -55,18 +55,18 @@ namespace CSharpGame
         
         public void SelectImage()
         {
-            switch (direction)
+            switch (ComponentDirection)
             {
-                case Direction.up:
+                case Direction.Up:
                     image = new Bitmap(CSharpGame.Properties.Resources.tank_basic_up_c0_t1);
                     break;
-                case Direction.right:
+                case Direction.Right:
                     image = new Bitmap(CSharpGame.Properties.Resources.tank_basic_right_c0_t1);
                     break;
-                case Direction.down:
+                case Direction.Down:
                     image = new Bitmap(CSharpGame.Properties.Resources.tank_basic_down_c0_t1);
                     break;
-                case Direction.left:
+                case Direction.Left:
                     image = new Bitmap(CSharpGame.Properties.Resources.tank_basic_left_c0_t1);
                     break;
                 default:

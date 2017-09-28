@@ -102,6 +102,7 @@ namespace CSharpGame
 
         private void pictureBox1_paint(object sender, PaintEventArgs e)
         {
+            //GameSettings.DrawObstacles(e.Graphics, mapObstacles);
             KolobokView.drawKolobok(e.Graphics, kolobok, tanks);
             TankView.drawTanks(e.Graphics, tanks, kolobok);
             if (GameSettings.gameOver == true)
@@ -116,19 +117,19 @@ namespace CSharpGame
         {
             if (e.KeyCode == Keys.Right)
             {
-                kolobok.direction = Direction.right;
+                kolobok.ComponentDirection = Direction.Right;
             }
             if (e.KeyCode == Keys.Left)
             {
-                kolobok.direction = Direction.left;
+                kolobok.ComponentDirection = Direction.Left;
             }
             if (e.KeyCode == Keys.Up)
             {
-                kolobok.direction = Direction.up;
+                kolobok.ComponentDirection = Direction.Up;
             }
             if (e.KeyCode == Keys.Down)
             {
-                kolobok.direction = Direction.down;
+                kolobok.ComponentDirection = Direction.Down;
             }
             if (e.KeyCode == Keys.Space)
             {

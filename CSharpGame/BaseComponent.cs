@@ -7,72 +7,72 @@ using System.Drawing;
 
 namespace CSharpGame
 {
-    class BaseComponent
+    public class BaseComponent
     {
         public int X { get; set; }
         public int Y { get; set; }
-        public int speedX = 0;
-        public int speedY = 0;
-        public int width = 28;
-        public int height = 28;
-        public Direction direction = Direction.down;
+        public int SpeedX = 0;
+        public int SpeedY = 0;
+        public int Width = 28;
+        public int Height = 28;
+        public Direction ComponentDirection = Direction.Down;
         public Bitmap image;
-        public Bullet bullet;
+        public Bullet Bullet;
         public virtual void Move()
         {
-            speedX = 0;
-            speedY = 0;
+            SpeedX = 0;
+            SpeedY = 0;
 
-            switch (direction)
+            switch (ComponentDirection)
             {
-                case Direction.up:
-                    speedY = -GameSettings.speed;
+                case Direction.Up:
+                    SpeedY = -GameSettings.speed;
                     break;
-                case Direction.right:
-                    speedX = GameSettings.speed;
+                case Direction.Right:
+                    SpeedX = GameSettings.speed;
                     break;
-                case Direction.down:
-                    speedY = GameSettings.speed;
+                case Direction.Down:
+                    SpeedY = GameSettings.speed;
                     break;
-                case Direction.left:
-                    speedX = -GameSettings.speed;
+                case Direction.Left:
+                    SpeedX = -GameSettings.speed;
                     break;
                 default:
                     break;
             }
 
-            X += speedX;
-            Y += speedY;
+            X += SpeedX;
+            Y += SpeedY;
         }
         public Rectangle Bounds()
         {
-            Rectangle rect = new Rectangle(X, Y, width, height);
+            Rectangle rect = new Rectangle(X, Y, Width, Height);
             return rect;
         }
         public void Reverse()
         {
-            switch (direction)
+            switch (ComponentDirection)
             {
-                case Direction.up:
-                    direction = Direction.down;
+                case Direction.Up:
+                    ComponentDirection = Direction.Down;
                     break;
-                case Direction.right:
-                    direction = Direction.left;
+                case Direction.Right:
+                    ComponentDirection = Direction.Left;
                     break;
-                case Direction.down:
-                    direction = Direction.up;
+                case Direction.Down:
+                    ComponentDirection = Direction.Up;
                     break;
-                case Direction.left:
-                    direction = Direction.right;
+                case Direction.Left:
+                    ComponentDirection = Direction.Right;
                     break;
             }
         }
 
         public void Shoot()
         {
-            if (bullet == null)
+            if (Bullet == null)
             {
-            bullet = new Bullet(this);
+            Bullet = new Bullet(this);
             }
         }
     }

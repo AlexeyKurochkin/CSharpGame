@@ -14,25 +14,25 @@ namespace CSharpGame
             //tank.defineDirection();
 
             tank.Shoot();
-            if (tank.bullet != null)
+            if (tank.Bullet != null)
             {
-                tank.bullet.Move();
-                tank.bullet.SelectImage();
-                g.DrawImage(tank.bullet.image, tank.bullet.Bounds());
-                if (!Collisions.BorderCollision(tank.bullet))
+                tank.Bullet.Move();
+                tank.Bullet.SelectImage();
+                g.DrawImage(tank.Bullet.image, tank.Bullet.Bounds());
+                if (!Collisions.BorderCollision(tank.Bullet))
                 {
-                    tank.bullet = null;
+                    tank.Bullet = null;
                 }
-                else if (Collisions.ObjectCollision(tank.bullet, kolobok))
+                else if (Collisions.ObjectCollision(tank.Bullet, kolobok))
                 {
-                    tank.bullet = null;
-                    kolobok.bullet = null;
+                    tank.Bullet = null;
+                    kolobok.Bullet = null;
                     GameSettings.gameOver = true;
 
                 }
                 else if (Collisions.ObjectCollision(tank, kolobok))
                 {
-                    kolobok.bullet = null;
+                    kolobok.Bullet = null;
                     GameSettings.gameOver = true;
                 }
             }
