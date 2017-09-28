@@ -1,0 +1,9 @@
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\WebApplications\CSharpGame\CSharpGame\bin\Debug\CSharpGame.exe.config
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\WebApplications\CSharpGame\CSharpGame\bin\Debug\CSharpGame.exe
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\WebApplications\CSharpGame\CSharpGame\bin\Debug\CSharpGame.pdb
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\WebApplications\CSharpGame\CSharpGame\obj\Debug\CSharpGame.csprojResolveAssemblyReference.cache
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\WebApplications\CSharpGame\CSharpGame\obj\Debug\CSharpGame.MainScreen.resources
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\WebApplications\CSharpGame\CSharpGame\obj\Debug\CSharpGame.Properties.Resources.resources
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\WebApplications\CSharpGame\CSharpGame\obj\Debug\CSharpGame.csproj.GenerateResource.Cache
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\WebApplications\CSharpGame\CSharpGame\obj\Debug\CSharpGame.exe
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\WebApplications\CSharpGame\CSharpGame\obj\Debug\CSharpGame.pdb
