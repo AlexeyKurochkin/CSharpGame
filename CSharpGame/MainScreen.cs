@@ -20,6 +20,7 @@ namespace CSharpGame
         List<Tank> tanks = new List<Tank>();
         int enemySpawnLeft = GameSettings.tanksAmount;
         int timerCounter = 0;
+        List<Obstacle> mapObstacles;
         
         
 
@@ -38,8 +39,8 @@ namespace CSharpGame
             //    enemySpawnLeft--;
             //}
 
-           // TankView.SpawnTank(tanks, timerCounter, enemySpawnLeft);
-
+            // TankView.SpawnTank(tanks, timerCounter, enemySpawnLeft);
+            mapObstacles = GameSettings.GenerateObstacles(GameSettings.map);
 
             
 
