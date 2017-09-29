@@ -45,7 +45,18 @@ namespace CSharpGame
         }
         public Bullet(BaseObject shooter) 
         {
-            switch (shooter.PreviousDirection)
+            Direction value;
+            if (shooter is Tank)
+            {
+                value = shooter.ObjectDirection;
+            }
+            else
+            {
+                value = shooter.PreviousDirection;
+            }
+
+
+            switch (value)
             {
                 case Direction.Up:
                     X = shooter.X + (shooter.Width - width) / 2;

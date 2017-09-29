@@ -82,7 +82,7 @@ namespace CSharpGame
 
         public void Shoot()
         {
-            if (Bullet == null)
+            if (Bullet == null && this != null)
             {
             Bullet = new Bullet(this);
             }

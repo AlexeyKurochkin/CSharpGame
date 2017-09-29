@@ -45,6 +45,7 @@ namespace CSharpGame
         public bool ObjectCollision(Bullet bullet, Obstacle obstacle)
         {
             return (Rectangle.Intersect(bullet.Bounds(), obstacle.Bounds()) != Rectangle.Empty);
+            //return bullet.Bounds().IntersectsWith(obstacle.Bounds());
         }
 
         public bool ObjectCollision(Tank tank, Kolobok kolobok)

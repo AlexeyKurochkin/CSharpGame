@@ -121,10 +121,14 @@ namespace CSharpGame
 
             foreach (var tank in Tanks)
             {
-                tank.DefineDirection(NewGameSettings.BlockSize);
+                //tank.DefineDirection(NewGameSettings.BlockSize, Level);
+                if (tank != null)
+                {
+
                 tank.Shoot();
+                }
                 tank.SelectImage();
-                tank.Move();
+                tank.Move(NewGameSettings.BlockSize, Level);
                 CheckCollisions(tank);
                 if (tank.Bullet != null)
                 {
@@ -141,7 +145,7 @@ namespace CSharpGame
 
         public void SpawnTanks()
         {
-            if (timerCount % 100 == 0 || timerCount == 1 /*|| index == GameSettings.tanksAmount*/)
+            if (timerCount % 80 == 0 || timerCount == 1 /*|| index == GameSettings.tanksAmount*/)
             {
                 var _currentTanksAmount = NewGameSettings.TanksAmount;
                 for (int i = 0; (i < _currentTanksAmount) && (i < 3); i++)
@@ -165,7 +169,7 @@ namespace CSharpGame
 
         public void CheckCollisions(BaseObject obj)
         {
-            CollisionsCheck.HandleObstacleCollision(obj, Level);
+            //CollisionsCheck.HandleObstacleCollision(obj, Level);
             if (!CollisionsCheck.NoBorderCollision(obj))
             {
                 switch (obj.ObjectDirection)
@@ -209,6 +213,10 @@ namespace CSharpGame
                         }
                     }
                 }
+            }
+            else if (obj is Kolobok)
+            {
+                CollisionsCheck.HandleObstacleCollision(obj, Level);
             }
         }
 

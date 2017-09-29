@@ -17,12 +17,14 @@ namespace CSharpGame
         public int TanksAmount;
         public int AppleAmount;
         public int BlockSize;
+        public int StepSize;
 
         public  int[,] Map;
 
         public GameSettings()
         {
             BlockSize = 15;
+            StepSize = BlockSize * 2;
             AreaWidth = 26;
             AreaHeight = 26;
             AreaWidthPx = AreaWidth * BlockSize;

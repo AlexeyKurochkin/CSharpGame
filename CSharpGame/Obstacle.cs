@@ -15,11 +15,15 @@ namespace CSharpGame
         public int Y { get; set; }
         public int Width;
         public int Height;
+        public int XIndex;
+        public int YIndex;
         public Bitmap Image;
         public ObstacleType Type;
 
         public Obstacle(int _type, int row, int column, GameSettings NewGameSettings)
         {
+            XIndex = column;
+            YIndex = row;
             X = column * NewGameSettings.BlockSize;
             Y = row * NewGameSettings.BlockSize;
 
