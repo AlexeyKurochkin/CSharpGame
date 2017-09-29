@@ -7,55 +7,23 @@ using System.Drawing;
 
 namespace CSharpGame
 {
-    class KolobokView
+    public class KolobokView
     {
-        
-        public static void drawKolobok(Graphics g, Kolobok kolobok, List<Tank> tanks)
+        Kolobok KolobokMain;
+        List<Tank> Tanks;
+
+        public KolobokView(Kolobok _kolobok, List<Tank> _tanks)
         {
-            if (kolobok != null)
+            KolobokMain = _kolobok;
+            Tanks = _tanks;
+        }
+        public void DrawKolobok(Graphics g)
+        {
+            g.DrawImage(KolobokMain.image, KolobokMain.Bounds());
+            if (KolobokMain.Bullet != null && KolobokMain.Bullet.image != null)
             {
-
-                if (kolobok.Bullet != null)
-                {
-                    kolobok.Bullet.Move();
-                    kolobok.Bullet.SelectImage();
-                    g.DrawImage(kolobok.Bullet.image, kolobok.Bullet.Bounds());
-                    if (!Collisions.BorderCollision(kolobok.Bullet))
-                    {
-                        kolobok.Bullet = null;
-                    }
-                    else
-                    {
-                        foreach (var tank in tanks)
-                        {
-                            if (Collisions.ObjectCollision(kolobok.Bullet, tank))
-                            {
-                                kolobok.Bullet = null;
-                                tank.SelectPosition(tanks.IndexOf(tank));
-                                break;
-                            }
-                        }
-                    }
-                    
-                }
-
-                kolobok.Move();
-                if (!Collisions.BorderCollision(kolobok))
-                {
-                    kolobok.Reverse();
-                }
-
-                kolobok.SelectImage();
-                g.DrawImage(kolobok.image, kolobok.Bounds());           
-            }
+                 g.DrawImage(KolobokMain.Bullet.image, KolobokMain.Bullet.Bounds());
+            }      
         }
-
-        public static Kolobok SpawnKolobok()
-        {
-            return new Kolobok(GameSettings.areaWidth, GameSettings.areaHeight);
-        }
-
-
-
     }
 }

@@ -25,16 +25,16 @@ namespace CSharpGame
             switch (direction)
             {
                 case Direction.Up:
-                    speedY = -GameSettings.speed*2;
+                    speedY = -2;
                     break;
                 case Direction.Right:
-                    speedX = GameSettings.speed*2;
+                    speedX = 2;
                     break;
                 case Direction.Down:
-                    speedY = GameSettings.speed*2;
+                    speedY = 2;
                     break;
                 case Direction.Left:
-                    speedX = -GameSettings.speed*2;
+                    speedX = -2;
                     break;
                 default:
                     break;
@@ -43,9 +43,9 @@ namespace CSharpGame
             X += speedX;
             Y += speedY;
         }
-        public Bullet(BaseComponent shooter) 
+        public Bullet(BaseObject shooter) 
         {
-            switch (shooter.ComponentDirection)
+            switch (shooter.PreviousDirection)
             {
                 case Direction.Up:
                     X = shooter.X + (shooter.Width - width) / 2;

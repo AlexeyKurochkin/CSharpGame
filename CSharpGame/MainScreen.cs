@@ -12,23 +12,23 @@ namespace CSharpGame
 {
     public partial class MainScreen : Form
     {
-
-        PictureBox pictureBox1 = new PictureBox();
-        Timer timer1 = new Timer();
-        Kolobok kolobok;
-        Tank tank;
-        List<Tank> tanks = new List<Tank>();
-        int enemySpawnLeft = GameSettings.tanksAmount;
-        int timerCounter = 0;
-        List<Obstacle> mapObstacles;
+        public PackmanController packmancontroller;
+        //Kolobok kolobok;
+        //Tank tank;
+        //List<Tank> tanks = new List<Tank>();
+        //int enemySpawnLeft = GameSettings.tanksAmount;
+        //int timerCounter = 0;
+        //List<Obstacle> mapObstacles;
         
         
 
         public MainScreen()
         {
             InitializeComponent();
-            new GameSettings();
-            AddRequiredElements();
+            packmancontroller = new PackmanController(this);
+            packmancontroller.AddRequiredElements(this);
+            packmancontroller.GameArea.Paint += GameArea_Paint;
+            packmancontroller.DrawTimer.Tick += UpdateScreen;
             //CreateBitmapAtRuntime();
             //kolobok = new Kolobok(GameSettings.areaWidth, GameSettings.areaHeight);
             //kolobok = KolobokView.SpawnKolobok();
@@ -40,107 +40,88 @@ namespace CSharpGame
             //}
 
             // TankView.SpawnTank(tanks, timerCounter, enemySpawnLeft);
-            mapObstacles = GameSettings.GenerateObstacles(GameSettings.map);
+            //mapObstacles = GameSettings.GenerateObstacles(GameSettings.map);
 
             
 
         }
         
-        public void AddRequiredElements()
-        {
-            pictureBox1.Size = new Size(GameSettings.areaWidth, GameSettings.areaHeight);
-            pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
-            pictureBox1.Paint += pictureBox1_paint;
-            // pictureBox1.Hide();
-
-            timer1.Interval = 20;
-            timer1.Tick += UpdateScreen;
-            
-            this.Controls.Add(pictureBox1);
-
-            //this.components.Add(timer1);
-            timer1.Start();
-
-            pictureBox1.BackColor = Color.Brown;
-        }
-        public void StartGame()
-        {
-            newGameButton.Hide();
-            timer1.Start();
-            pictureBox1.Show();
-            GameSettings.gameOver = false;
-            //kolobok.X = GameSettings.areaWidth/3;
-            //kolobok.Y = GameSettings.areaHeight-kolobok.height;
-            enemySpawnLeft = GameSettings.tanksAmount;
-            //foreach (var tank in tanks)
-            //{
-            //    tank.bullet = null;
-            //    tank.SelectPosition(tanks.IndexOf(tank));
-            //}
-        }
-        public void GameOver()
-        {
-            timer1.Stop();
-            newGameButton.Show();
-            tanks.Clear();
-            kolobok = null;
-            timerCounter = 0;
-        }
+        //public void StartGame()
+        //{
+        //    newGameButton.Hide();
+        //    timer1.Start();
+        //    pictureBox1.Show();
+        //    GameSettings.gameOver = false;
+        //    //kolobok.X = GameSettings.areaWidth/3;
+        //    //kolobok.Y = GameSettings.areaHeight-kolobok.height;
+        //    enemySpawnLeft = GameSettings.tanksAmount;
+        //    //foreach (var tank in tanks)
+        //    //{
+        //    //    tank.bullet = null;
+        //    //    tank.SelectPosition(tanks.IndexOf(tank));
+        //    //}
+        //}
+        //public void GameOver()
+        //{
+        //    timer1.Stop();
+        //    newGameButton.Show();
+        //    tanks.Clear();
+        //    kolobok = null;
+        //    timerCounter = 0;
+        //}
 
 
         private void UpdateScreen(object sender, EventArgs e)
         {
-            timerCounter += 1;
-            if (kolobok == null)
-            {
-                kolobok = KolobokView.SpawnKolobok();
-            }
-            TankView.SpawnTank(tanks, timerCounter, ref enemySpawnLeft);
-            label1.Text = "tttt";
-            pictureBox1.Invalidate();
+            packmancontroller.UpdateValues();
         }
 
-        private void pictureBox1_paint(object sender, PaintEventArgs e)
+        private void GameArea_Paint(object sender, PaintEventArgs e)
         {
             //GameSettings.DrawObstacles(e.Graphics, mapObstacles);
-            KolobokView.drawKolobok(e.Graphics, kolobok, tanks);
-            TankView.drawTanks(e.Graphics, tanks, kolobok);
-            if (GameSettings.gameOver == true)
-            {
-                GameOver();
-            }
+            packmancontroller.DrawNewFrame(e.Graphics);
+            //KolobokView.drawKolobok(e.Graphics, kolobok, tanks);
+            //TankView.drawTanks(e.Graphics, tanks, kolobok);
+            //if (GameSettings.gameOver == true)
+            //{
+            //    GameOver();
+            //}
             //kolobok.draw(e.Graphics);
             
         }
 
         private void MainScreen_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Right)
-            {
-                kolobok.ComponentDirection = Direction.Right;
-            }
-            if (e.KeyCode == Keys.Left)
-            {
-                kolobok.ComponentDirection = Direction.Left;
-            }
-            if (e.KeyCode == Keys.Up)
-            {
-                kolobok.ComponentDirection = Direction.Up;
-            }
-            if (e.KeyCode == Keys.Down)
-            {
-                kolobok.ComponentDirection = Direction.Down;
-            }
+                if (e.KeyCode == Keys.Right)
+                {
+                packmancontroller.KolobokMain.PreviousDirection = packmancontroller.KolobokMain.ObjectDirection;
+                packmancontroller.KolobokMain.ObjectDirection = Direction.Right;
+                }
+                if (e.KeyCode == Keys.Left)
+                {
+                packmancontroller.KolobokMain.PreviousDirection = packmancontroller.KolobokMain.ObjectDirection;
+                packmancontroller.KolobokMain.ObjectDirection = Direction.Left;
+                }
+                if (e.KeyCode == Keys.Up)
+                {
+                packmancontroller.KolobokMain.PreviousDirection = packmancontroller.KolobokMain.ObjectDirection;
+                packmancontroller.KolobokMain.ObjectDirection = Direction.Up;
+                }
+                if (e.KeyCode == Keys.Down)
+                {
+                packmancontroller.KolobokMain.PreviousDirection = packmancontroller.KolobokMain.ObjectDirection;
+                packmancontroller.KolobokMain.ObjectDirection = Direction.Down;
+                }
             if (e.KeyCode == Keys.Space)
             {
-                kolobok.Shoot();
+                packmancontroller.KolobokMain.Shoot();
             }
         }
 
         private void newGameButton_MouseClick(object sender, MouseEventArgs e)
         {
-            StartGame();
-
+            packmancontroller.StartGame(newGameButton);
         }
+
     }
 }

@@ -7,49 +7,48 @@ using System.Drawing;
 
 namespace CSharpGame
 {
-    public enum ObstacleType
-    {
-        empty,
-        brick,
-        concrete,
-        river
-    }
 
-    class Obstacle
+
+    public class Obstacle
     {
         public int X { get; set; }
         public int Y { get; set; }
-        public int width = 30;
-        public int height = 30;
-        public Bitmap image;
-        public ObstacleType type;
+        public int Width;
+        public int Height;
+        public Bitmap Image;
+        public ObstacleType Type;
 
-        public Obstacle(int t)
+        public Obstacle(int _type, int row, int column, GameSettings NewGameSettings)
         {
-            
-            switch ((ObstacleType)t)
+            X = column * NewGameSettings.BlockSize;
+            Y = row * NewGameSettings.BlockSize;
+
+            Width = NewGameSettings.BlockSize;
+            Height = NewGameSettings.BlockSize;
+
+            switch ((ObstacleType)_type)
             {
                 case ObstacleType.empty:
-                    type = ObstacleType.empty;
+                    Type = ObstacleType.empty;
                     break;
                 case ObstacleType.brick:
-                    type = ObstacleType.brick;
-                    image = new Bitmap(CSharpGame.Properties.Resources.wall_brick);
+                    Type = ObstacleType.brick;
+                    Image = new Bitmap(CSharpGame.Properties.Resources.wall_brick);
                     break;
                 case ObstacleType.concrete:
-                    type = ObstacleType.concrete;
-                    image = new Bitmap(CSharpGame.Properties.Resources.wall_concrete);
+                    Type = ObstacleType.concrete;
+                    Image = new Bitmap(CSharpGame.Properties.Resources.wall_concrete);
                     break;
                 case ObstacleType.river:
-                    type = ObstacleType.river;
-                    image = new Bitmap(CSharpGame.Properties.Resources.water_1);
+                    Type = ObstacleType.river;
+                    Image = new Bitmap(CSharpGame.Properties.Resources.water_1);
                     break;
             }
         }
 
         public Rectangle Bounds()
         {
-            Rectangle rect = new Rectangle(X, Y, width, height);
+            Rectangle rect = new Rectangle(X, Y, Width, Height);
             return rect;
         }
     }

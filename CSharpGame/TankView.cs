@@ -7,76 +7,32 @@ using System.Drawing;
 
 namespace CSharpGame
 {
-    class TankView
+    public class TankView
     {
-        public static void drawTank(Graphics g, Tank tank, Kolobok kolobok)
-        {
-            //tank.defineDirection();
+        Kolobok KolobokMain;
+        List<Tank> Tanks;
 
-            tank.Shoot();
+        public TankView(Kolobok _kolobok, List<Tank> _tanks)
+        {
+            KolobokMain = _kolobok;
+            Tanks = _tanks;
+        }
+
+        public void DrawTank(Graphics g, Tank tank)
+        {
+            g.DrawImage(tank.image, tank.Bounds());
             if (tank.Bullet != null)
             {
-                tank.Bullet.Move();
-                tank.Bullet.SelectImage();
                 g.DrawImage(tank.Bullet.image, tank.Bullet.Bounds());
-                if (!Collisions.BorderCollision(tank.Bullet))
-                {
-                    tank.Bullet = null;
-                }
-                else if (Collisions.ObjectCollision(tank.Bullet, kolobok))
-                {
-                    tank.Bullet = null;
-                    kolobok.Bullet = null;
-                    GameSettings.gameOver = true;
-
-                }
-                else if (Collisions.ObjectCollision(tank, kolobok))
-                {
-                    kolobok.Bullet = null;
-                    GameSettings.gameOver = true;
-                }
             }
-
-            tank.Move();
-            if (!Collisions.BorderCollision(tank))
-            {
-                tank.Reverse();
-            }
-
-
-
-            tank.SelectImage();
-            g.DrawImage(tank.image, tank.Bounds());
         }
-        public static void drawTanks(Graphics g, List<Tank> tanks, Kolobok kolobok)
+        
+        public void DrawTanks(Graphics g)
         {
-            foreach (var tank in tanks)
+            foreach (var tank in Tanks)
             {
-                drawTank(g, tank, kolobok);
-                foreach (var item in tanks)
-                {
-                    if (Collisions.ObjectCollision(tank, item))
-                    {
-                        tank.Reverse();
-                        item.Reverse();
-                    }
-                    
-                }
+                DrawTank(g, tank);
             }
         }
-
-        public static void SpawnTank(List<Tank> tanks, int timerCount, ref int index)
-        {
-            if (timerCount % 100 == 0 || index == GameSettings.tanksAmount)
-            {
-                var j = index;
-                for (int i = 0; (i < j) && (i < 3); i++)
-                {
-                    tanks.Add(new Tank(i));
-                    index--;
-                }
-            }
-        }
-
     }
 }

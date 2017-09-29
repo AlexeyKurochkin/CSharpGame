@@ -7,32 +7,36 @@ using System.Drawing;
 
 namespace CSharpGame
 {
-    class Tank : BaseComponent
+    public class Tank : BaseObject
     {
 
 
-        public Tank(int x, int y)
+        public Tank(GameSettings NewGameSettings)
         {
-            this.X = x / 2;
+            this.X = NewGameSettings.BlockSize *  (NewGameSettings.AreaWidth / 3);
             this.Y = 0;
-            ComponentDirection = Direction.Down;
+            ObjectDirection = Direction.Down;
         }
 
-        public Tank(int i)
+        public Tank(int i, GameSettings NewGameSettings)
         {
-            SelectPosition(i);
-            ComponentDirection = Direction.Down;
+            SelectPosition(i, NewGameSettings);
+            ObjectDirection = Direction.Down;
         }
 
         
-        public void DefineDirection()
+        public void DefineDirection(int blockSize)
         {
+            if ((X % blockSize*2 == 0 && X != 0) || (Y % blockSize*2 == 0 && Y != 0))
+            {
             Random r = new Random();
             int value = r.Next(4);
-            ComponentDirection = (Direction)value;
+            ObjectDirection = (Direction)value;
+
+            }
         }
 
-        public void SelectPosition(int i)
+        public void SelectPosition(int i, GameSettings NewGameSettings)
         {
             switch (i % 3)
             {
@@ -41,11 +45,11 @@ namespace CSharpGame
                     Y = 0;
                     break;
                 case 1:
-                    X = GameSettings.areaWidth / 2 - Width / 2;
+                    X = NewGameSettings.BlockSize * (NewGameSettings.AreaWidth / 2) - Width/2;
                     Y = 0;
                     break;
                 case 2:
-                    X = GameSettings.areaWidth - Width;
+                    X = NewGameSettings.AreaWidthPx - Width;
                     Y = 0;
                     break;
                 default:
@@ -55,7 +59,7 @@ namespace CSharpGame
         
         public void SelectImage()
         {
-            switch (ComponentDirection)
+            switch (ObjectDirection)
             {
                 case Direction.Up:
                     image = new Bitmap(CSharpGame.Properties.Resources.tank_basic_up_c0_t1);
