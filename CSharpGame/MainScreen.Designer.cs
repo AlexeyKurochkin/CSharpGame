@@ -58,6 +58,7 @@
             this.ClientSize = new System.Drawing.Size(584, 561);
             this.Controls.Add(this.newGameButton);
             this.Controls.Add(this.label1);
+            this.DoubleBuffered = true;
             this.KeyPreview = true;
             this.Name = "MainScreen";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

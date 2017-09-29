@@ -22,6 +22,9 @@ namespace CSharpGame
         public TankView Tankview;
         public KolobokView Kolobokview;
         public List<Obstacle> Level;
+        public List<Obstacle> EmptyPlaces;
+        public List<Apple> Apples;
+        public AppleView Appleview;
         public MapView Mapview;
         private MainScreen mainscreen;
 
@@ -46,7 +49,7 @@ namespace CSharpGame
             mainscreen.Controls.Add(GameArea);
 
             //DrawTimer.Start();
-
+            
             GameArea.BackColor = Color.Brown;
         }
 
@@ -64,6 +67,11 @@ namespace CSharpGame
             {
                 Mapview.DrawMap(g);
             }
+            if (Appleview != null)
+            {
+                Appleview.DrawApples(g);
+            }
+
         }
 
         public void StartGame()
@@ -107,6 +115,7 @@ namespace CSharpGame
             timerCount += 1;
             SpawnTanks();
             SpawnKolobok();
+            SpawnApples();
 
             KolobokMain.SelectImage();
             CheckCollisions(KolobokMain);
@@ -165,6 +174,43 @@ namespace CSharpGame
                 Kolobokview = new KolobokView(KolobokMain, Tanks);
                 Tankview = new TankView(KolobokMain, Tanks);
             }
+        }
+
+        public void SpawnApples()
+        {
+            if (Apples == null)
+            {
+                Apples = new List<Apple>();
+                Appleview = new AppleView(Apples);
+                EmptyPlaces = Level.FindAll(e => e.Type == ObstacleType.empty);
+                Random r = new Random();
+                int _amount = NewGameSettings.AppleAmount;
+                while (NewGameSettings.AppleAmount > 0)
+                {
+                var place = EmptyPlaces.ElementAt(r.Next(EmptyPlaces.Count));
+                    if (CheckApplePlace(place))
+                    {
+                        Apples.Add(new Apple(place.X, place.Y, NewGameSettings));
+                        NewGameSettings.AppleAmount--;
+                    }
+
+                }
+            }
+        }
+
+        public bool CheckApplePlace(Obstacle obstacle)
+        {
+            int _x = (int)(obstacle.X / NewGameSettings.BlockSize);
+            int _y = (int)(obstacle.Y / NewGameSettings.BlockSize);
+
+            Obstacle obst = Level.Find(o => (o.XIndex == _x + 1) && (o.YIndex == _y));
+            Obstacle obst2 = Level.Find(o => (o.XIndex == _x + 1) && (o.YIndex == _y + 1));
+            Obstacle obst3 = Level.Find(o => (o.XIndex == _x) && (o.YIndex == _y + 1));
+            if ((obst != null && obst2 != null))
+            {
+                return (obst.Type == ObstacleType.empty && obst2.Type == ObstacleType.empty && obst3.Type == ObstacleType.empty);
+            }
+            return false;
         }
 
         public void CheckCollisions(BaseObject obj)

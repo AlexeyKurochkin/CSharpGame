@@ -24,14 +24,14 @@ namespace CSharpGame
         public GameSettings()
         {
             BlockSize = 15;
-            StepSize = BlockSize * 2;
+            //StepSize = BlockSize * 2;
             AreaWidth = 26;
             AreaHeight = 26;
             AreaWidthPx = AreaWidth * BlockSize;
             AreaHeightPx = AreaHeight * BlockSize;
             Speed = 1;
             TanksAmount = 5;
-            AppleAmount = 1;
+            AppleAmount = 5;
             Map = new int[,] {
         { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
         { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },

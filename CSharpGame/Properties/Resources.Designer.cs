@@ -73,6 +73,16 @@ namespace CSharpGame.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Apple32 {
+            get {
+                object obj = ResourceManager.GetObject("Apple32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap base_destroyed {
             get {
                 object obj = ResourceManager.GetObject("base_destroyed", resourceCulture);

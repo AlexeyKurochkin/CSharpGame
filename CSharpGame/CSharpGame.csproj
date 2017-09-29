@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Apple.cs" />
+    <Compile Include="AppleView.cs" />
     <Compile Include="BaseObject.cs" />
     <Compile Include="Bullet.cs" />
     <Compile Include="Enums.cs" />
@@ -154,6 +155,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\water_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Apple32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
