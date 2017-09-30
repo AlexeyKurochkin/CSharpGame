@@ -74,6 +74,7 @@ namespace CSharpGame
         private void UpdateScreen(object sender, EventArgs e)
         {
             packmancontroller.UpdateValues();
+            packmancontroller.CheckScore(Score);
         }
 
         private void GameArea_Paint(object sender, PaintEventArgs e)

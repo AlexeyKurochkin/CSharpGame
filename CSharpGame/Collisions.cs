@@ -70,6 +70,11 @@ namespace CSharpGame
             //return obj.Bounds().IntersectsWith(obstacle.Bounds());
         }
 
+        public bool ObjectCollision(Apple apple, Kolobok kolobok)
+        {
+            return (Rectangle.Intersect(apple.Bounds(), kolobok.Bounds()) != Rectangle.Empty);
+        }
+
         public void HandleObstacleCollision(ref Bullet bullet, List<Obstacle> lvl)
         {
             foreach (var obstacle in lvl)
@@ -118,10 +123,34 @@ namespace CSharpGame
                             }
                             obj.PreviousDirection = obj.ObjectDirection;
                             obj.ObjectDirection = Direction.None;
-
                         }
                         else obj.Reverse();
                     }
+                }
+            }
+        }
+
+        public void HandleApplesCollision(List<Apple> apples, Kolobok kolobok, PackmanController pc)
+        {
+            foreach (var apple in apples)
+            {
+                if (this.ObjectCollision(apple, kolobok))
+                {
+                    pc.Scores++;
+                    Obstacle place;
+                    bool found = false;
+                    Random r = new Random();
+                    
+                    do
+                    {
+                        place = pc.EmptyPlaces.ElementAt(r.Next(pc.EmptyPlaces.Count));
+                        if (pc.CheckApplePlace(place))
+                        {
+                            apple.X = place.X;
+                            apple.Y = place.Y;
+                            found = true;
+                        }
+                    } while (!found);
                 }
             }
         }

@@ -26,14 +26,17 @@ namespace CSharpGame
         public List<Apple> Apples;
         public AppleView Appleview;
         public MapView Mapview;
-        private MainScreen mainscreen;
+        public MainScreen mainscreen;
+        public int Scores;
+        public DataView Dataview;
 
 
         public PackmanController(MainScreen msc)
         {
             Tanks = new List<Tank>();
-            StartGame();
             mainscreen = msc;
+            StartGame();
+
            
         }
 
@@ -80,7 +83,10 @@ namespace CSharpGame
             CollisionsCheck = new Collisions(NewGameSettings);
             Level = NewGameSettings.GenerateMap();
             Mapview = new MapView(Level);
-            
+            Scores = 0;
+
+            Dataview = new DataView(this);
+            Dataview.Show();
         }
         public void StartGame(Button button)
         {
@@ -88,6 +94,7 @@ namespace CSharpGame
             CollisionsCheck = new Collisions(NewGameSettings);
             Level = NewGameSettings.GenerateMap();
             Mapview = new MapView(Level);
+            Scores = 0;
 
             button.Hide();
             DrawTimer.Start();
@@ -95,7 +102,6 @@ namespace CSharpGame
 
             KolobokMain = null;
             Tanks.Clear();
-
 
         }
 
@@ -112,6 +118,8 @@ namespace CSharpGame
 
         public void UpdateValues()
         {
+
+            Dataview.AddRequiredElements();
             timerCount += 1;
             SpawnTanks();
             SpawnKolobok();
@@ -147,7 +155,9 @@ namespace CSharpGame
                 }
             }
 
+            CollisionsCheck.HandleApplesCollision(Apples, KolobokMain, this);
 
+            Dataview.InitDisplayValues();
 
             GameArea.Invalidate();
         }
@@ -296,6 +306,14 @@ namespace CSharpGame
                     EndGame();
                 } else
                 CollisionsCheck.HandleObstacleCollision(ref bullet, Level);
+            }
+        }
+
+        public void CheckScore(Label score)
+        {
+            if (score.Text != Scores.ToString())
+            {
+                score.Text = Scores.ToString();
             }
         }
     }
