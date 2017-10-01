@@ -31,6 +31,7 @@
             this.ScoreLabel = new System.Windows.Forms.Label();
             this.newGameButton = new System.Windows.Forms.Button();
             this.Score = new System.Windows.Forms.Label();
+            this.SettingsButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // ScoreLabel
@@ -45,6 +46,7 @@
             // 
             // newGameButton
             // 
+            this.newGameButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.newGameButton.Location = new System.Drawing.Point(215, 436);
             this.newGameButton.Name = "newGameButton";
             this.newGameButton.Size = new System.Drawing.Size(149, 55);
@@ -62,11 +64,25 @@
             this.Score.Size = new System.Drawing.Size(0, 25);
             this.Score.TabIndex = 2;
             // 
+            // SettingsButton
+            // 
+            this.SettingsButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.SettingsButton.Location = new System.Drawing.Point(215, 497);
+            this.SettingsButton.Name = "SettingsButton";
+            this.SettingsButton.Size = new System.Drawing.Size(149, 55);
+            this.SettingsButton.TabIndex = 4;
+            this.SettingsButton.TabStop = false;
+            this.SettingsButton.Text = "Settings";
+            this.SettingsButton.UseVisualStyleBackColor = true;
+            this.SettingsButton.Click += new System.EventHandler(this.SettingsButton_Click);
+            // 
             // MainScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(584, 561);
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this.ClientSize = new System.Drawing.Size(584, 643);
+            this.Controls.Add(this.SettingsButton);
             this.Controls.Add(this.Score);
             this.Controls.Add(this.newGameButton);
             this.Controls.Add(this.ScoreLabel);
@@ -86,6 +102,7 @@
         private System.Windows.Forms.Label ScoreLabel;
         private System.Windows.Forms.Button newGameButton;
         private System.Windows.Forms.Label Score;
+        private System.Windows.Forms.Button SettingsButton;
     }
 }
 

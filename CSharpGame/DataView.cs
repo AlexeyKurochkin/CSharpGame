@@ -41,15 +41,15 @@ namespace CSharpGame
 
         public void AddRequiredElements()
         {
-            if (Labels == null)
+            if (Labels == null || !Labels.Any())
             {
                 AddNames();
             }
-            if (CoordinatesX == null)
+            if (CoordinatesX == null || !CoordinatesX.Any())
             {
                 AddCoordinatesX();
             }
-            if (CoordinatesY == null)
+            if (CoordinatesY == null || !CoordinatesY.Any())
             {
                 AddCoordinatesY();
             }
@@ -223,6 +223,23 @@ namespace CSharpGame
             {
                 CoordinatesX[i + 1 + tanksAmount].Text = Pc.Apples[i].X.ToString();
                 CoordinatesY[i + 1 + tanksAmount].Text = Pc.Apples[i].Y.ToString();
+            }
+        }
+
+        public void UpdateValues(PackmanController pc)
+        {
+            Pc = pc;
+            tanksAmount = pc.NewGameSettings.TanksAmount;
+            Refresh();
+            try
+            {
+                Labels.Clear();
+                CoordinatesX.Clear();
+                CoordinatesY.Clear();
+            }
+            catch (Exception)
+            {
+
             }
         }
     }

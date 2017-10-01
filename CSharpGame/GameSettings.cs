@@ -29,7 +29,7 @@ namespace CSharpGame
             AreaHeight = 26;
             AreaWidthPx = AreaWidth * BlockSize;
             AreaHeightPx = AreaHeight * BlockSize;
-            Speed = 1;
+            Speed = 20;
             TanksAmount = 5;
             AppleAmount = 5;
             Map = new int[,] {
@@ -51,63 +51,37 @@ namespace CSharpGame
         { 0,0,0,0,0,0,0,0,0,0,1,1,0,0,1,1,0,0,0,0,0,0,0,0,0,0 },
         { 0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0 },
         { 0,0,1,1,0,0,1,1,0,0,1,1,1,1,1,1,0,0,1,1,0,0,1,1,0,0 },
-        { 0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0 },
-        { 0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0 },
-        { 0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0 },
+        { 0,0,1,1,0,0,1,1,0,0,1,1,3,3,1,1,0,0,1,1,0,0,1,1,0,0 },
+        { 0,0,1,1,0,0,1,1,0,0,1,1,3,3,1,1,0,0,1,1,0,0,1,1,0,0 },
+        { 0,0,1,1,0,0,1,1,0,0,1,1,3,3,1,1,0,0,1,1,0,0,1,1,0,0 },
         { 0,0,1,1,0,0,1,1,0,0,0,0,0,0,0,0,0,0,1,1,0,0,1,1,0,0 },
         { 0,0,1,1,0,0,1,1,0,0,0,0,0,0,0,0,0,0,1,1,0,0,1,1,0,0 },
         { 0,0,1,1,0,0,1,1,0,0,0,1,1,1,1,0,0,0,1,1,0,0,1,1,0,0 },
-        { 0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0 },
-        { 0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0 }};
+        { 0,0,0,0,0,0,0,0,0,0,0,1,3,3,1,0,0,0,0,0,0,0,0,0,0,0 },
+        { 0,0,0,0,0,0,0,0,0,0,0,1,3,3,1,0,0,0,0,0,0,0,0,0,0,0 }};
         }
-
-        //public static List<Obstacle> GenerateObstacles(int[,] map)
-        //{
-        //    List<Obstacle> mapObstacles = new List<Obstacle>();
-        //    for (int i = 0; i < map.GetLength(0); i++)
-        //    {
-        //        for (int j = 0; j < map.GetLength(1); j++)
-        //        {
-        //            int element = map[i, j];
-        //            mapObstacles.Add(new Obstacle(element));
-        //        }
-        //    }
-        //    return mapObstacles;
-        //}
-
-        //public static void DrawObstacles(Graphics g, List<Obstacle> map)
-        //{
-        //    foreach (var element in map)
-        //    {
-        //        if (element.type != ObstacleType.empty)
-        //        {
-        //            DrawObstacle(g, element);
-        //        }
-
-        //        //foreach (var item in tanks)
-        //        //{
-        //        //    if (Collisions.ObjectCollision(tank, item))
-        //        //    {
-        //        //        tank.Reverse();
-        //        //        item.Reverse();
-        //        //    }
-        //        //}
-        //    }
-        //}
-        //public static void DrawObstacle(Graphics g, Obstacle obstacle)
-        //{
-        //    g.DrawImage(obstacle.image, obstacle.Bounds());
-        //}
 
         public List<Obstacle> GenerateMap()
         {
             List<Obstacle> mapObstacles = new List<Obstacle>();
-            for (int i = 0; i < Map.GetLength(0); i++)
+            for (int i = 0; i < AreaHeight; i++)
             {
-                for (int j = 0; j < Map.GetLength(1); j++)
+                for (int j = 0; j < AreaWidth; j++)
+
                 {
-                    int element = Map[i, j];
-                    mapObstacles.Add(new Obstacle(element, i, j, this));
+                    try
+                    {
+                        int element = Map[i, j];
+                        if (i == AreaHeight-1 || i == AreaHeight - 2)
+                        {
+                            element = 0;
+                        }
+                        mapObstacles.Add(new Obstacle(element, i, j, this));
+                    }
+                    catch (Exception)
+                    {
+                        mapObstacles.Add(new Obstacle(0, i, j, this));
+                    }
                 }
             }
             return mapObstacles;

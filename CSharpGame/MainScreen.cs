@@ -26,7 +26,7 @@ namespace CSharpGame
         {
             InitializeComponent();
             packmancontroller = new PackmanController(this);
-            packmancontroller.AddRequiredElements(this);
+            packmancontroller.AddRequiredElements();
             packmancontroller.GameArea.Paint += GameArea_Paint;
             packmancontroller.DrawTimer.Tick += UpdateScreen;
             //CreateBitmapAtRuntime();
@@ -122,7 +122,13 @@ namespace CSharpGame
         private void newGameButton_MouseClick(object sender, MouseEventArgs e)
         {
             packmancontroller.StartGame(newGameButton);
+            Refresh();
         }
 
+        private void SettingsButton_Click(object sender, EventArgs e)
+        {
+            packmancontroller.ShowSettings(sender);
+            
+        }
     }
 }

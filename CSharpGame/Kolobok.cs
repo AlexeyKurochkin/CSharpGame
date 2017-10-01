@@ -13,7 +13,7 @@ namespace CSharpGame
         public Kolobok(GameSettings NewGameSettings)
         {
             this.X = NewGameSettings.BlockSize * (NewGameSettings.AreaWidth / 3) + 1;
-            this.Y = NewGameSettings.AreaWidthPx - Height;
+            this.Y = NewGameSettings.AreaHeightPx - Height;
 
             ObjectDirection = Direction.Up;
             image = new Bitmap(CSharpGame.Properties.Resources.tank_player1_up_c0_t1);
@@ -24,16 +24,16 @@ namespace CSharpGame
             switch (ObjectDirection)
             {
                 case Direction.Up:
-                    image = new Bitmap(CSharpGame.Properties.Resources.tank_player1_up_c0_t1);
+                    image = new Bitmap(CSharpGame.Properties.Resources.kolobok1_up);
                     break;
                 case Direction.Right:
-                    image = new Bitmap(CSharpGame.Properties.Resources.tank_player1_right_c0_t1);
+                    image = new Bitmap(CSharpGame.Properties.Resources.kolobok1_right);
                     break;
                 case Direction.Down:
-                    image = new Bitmap(CSharpGame.Properties.Resources.tank_player1_down_c0_t1);
+                    image = new Bitmap(CSharpGame.Properties.Resources.kolobok1_down);
                     break;
                 case Direction.Left:
-                    image = new Bitmap(CSharpGame.Properties.Resources.tank_player1_left_c0_t1);
+                    image = new Bitmap(CSharpGame.Properties.Resources.kolobok1_left);
                     break;
                 default:
                     //image = new Bitmap(CSharpGame.Properties.Resources.tank_player1_up_c0_t1);

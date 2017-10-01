@@ -168,6 +168,18 @@
   <ItemGroup>
     <None Include="Resources\Apple32.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\kolobok1_down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\kolobok1_up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\kolobok1_left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\kolobok1_right.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

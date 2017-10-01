@@ -1,0 +1,10 @@
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\WebApplications\CSharpGame\CSharpGame\bin\Release\CSharpGame.exe.config
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\WebApplications\CSharpGame\CSharpGame\bin\Release\CSharpGame.exe
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\WebApplications\CSharpGame\CSharpGame\bin\Release\CSharpGame.pdb
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\WebApplications\CSharpGame\CSharpGame\obj\Release\CSharpGame.DataView.resources
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\WebApplications\CSharpGame\CSharpGame\obj\Release\CSharpGame.MainScreen.resources
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\WebApplications\CSharpGame\CSharpGame\obj\Release\CSharpGame.Properties.Resources.resources
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\WebApplications\CSharpGame\CSharpGame\obj\Release\CSharpGame.csproj.GenerateResource.Cache
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\WebApplications\CSharpGame\CSharpGame\obj\Release\CSharpGame.exe
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\WebApplications\CSharpGame\CSharpGame\obj\Release\CSharpGame.pdb
+C:\Users\Alexey\Documents\Visual Studio 2015\Projects\WebApplications\CSharpGame\CSharpGame\obj\Release\CSharpGame.csprojResolveAssemblyReference.cache
